@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Invitation</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f5eddf;
+  color: #493b32;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+.scene { width: 100%; max-width: 380px; }
+
+h1 {
+  font-size: 27px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #8b7867;
+  text-transform: uppercase;
+}
+
+.envelope {
+  position: relative;
+  height: 225px;
+  margin-top: 55px;
+  background: #bd755d;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 12px 25px #6b503322;
+  perspective: 800px;
+}
+
+.letter {
+  position: absolute;
+  left: 8%;
+  width: 84%;
+  height: 190px;
+  top: 12px;
+  padding: 24px 12px;
+  background: #fffaf0;
+  transition: transform 1s ease, top 1s ease;
+  z-index: 1;
+}
+
+.letter h2 {
+  font-size: 23px;
+  font-weight: normal;
+  color: #9d5e49;
+}
+
+.letter p { font-size: 14px; line-height: 1.7; }
+
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #d99b7d;
+  clip-path: polygon(0 0, 100% 0, 50% 57%);
+  transform-origin: top;
+  transition: transform 0.7s ease;
+  z-index: 3;
+}
+
+.front {
+  position: absolute;
+  inset: 0;
+  background: #bd755d;
+  clip-path: polygon(0 100%, 0 0, 50% 57%, 100% 0, 100% 100%);
+  z-index: 2;
+}
+
+.seal {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #74816a;
+  color: #fff7e9;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  transition: opacity 0.3s;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope.open .letter {
+  transform: translateY(-135px);
+  transition-delay: 0.25s;
+}
+
+.envelope.open .seal { opacity: 0; }
+
+.hint {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #8b7867;
+  letter-spacing: 1px;
+}
+
+.footer {
+  margin-top: 45px;
+  font-size: 12px;
+  color: #8b7867;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+<main class="scene">
+  <div class="subtitle">A little something special</div>
+  <h1>You're invited ♡</h1>
+
+  <div class="envelope" id="envelope"
+       onclick="this.classList.toggle('open')"
+       role="button" tabindex="0"
+       aria-label="Open invitation envelope">
+    <div class="letter">
+      <div>✿ &nbsp; ✿ &nbsp; ✿</div>
+      <h2>A Special Day</h2>
+      <p>
+        A little gathering,<br>
+        a lot of love,<br>
+        and memories to make.
+      </p>
+    </div>
+    <div class="flap"></div>
+    <div class="front"></div>
+    <div class="seal">✿</div>
+  </div>
+
+  <div class="hint">TAP THE ENVELOPE TO OPEN</div>
+  <div class="footer">GATHER • CELEBRATE • REMEMBER</div>
+</main>
+
+<script>
+const envelope = document.getElementById("envelope");
+envelope.addEventListener("keydown", function(event) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    envelope.classList.toggle("open");
+  }
+});
+</script>
+</body>
+</html>
+
